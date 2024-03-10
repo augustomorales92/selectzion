@@ -8,6 +8,7 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith('/backoffice');
+      console.log('aaaaaa', nextUrl)
       if (isOnDashboard) {
         if (isLoggedIn) return true;
         return Response.redirect(new URL('/', nextUrl));
