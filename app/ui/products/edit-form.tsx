@@ -149,7 +149,7 @@ export default function EditInvoiceForm({
                   id="sold"
                   name="status"
                   type="radio"
-                  value="paid"
+                  value="sold"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                   defaultChecked={product.status === 'sold'}
                 />
