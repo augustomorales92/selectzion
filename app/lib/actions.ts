@@ -1,11 +1,10 @@
 'use server';
 
 import { z } from 'zod';
-import { ProductForm } from './definitions';
+import { ProductForm, UploadFileResponse } from './definitions';
 import { QueryResultRow, sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { UploadFileResponse } from 'uploadthing/client';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { DeleteImages } from '../../pages/api/uploadthing/route';

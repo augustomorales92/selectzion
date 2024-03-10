@@ -1,4 +1,7 @@
 import '@/app/ui/global.css';
+import { ourFileRouter } from '@/pages/api/uploadthing/core';
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
 
 export default function RootLayout({
   children,
@@ -7,7 +10,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+      <NextSSRPlugin
+          routerConfig={extractRouterConfig(ourFileRouter)}
+        />
+        {children}</body>
     </html>
   );
 }

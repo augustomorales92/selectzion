@@ -11,12 +11,11 @@ import { Button } from '@/app/ui/button';
 import { createProduct } from '@/app/lib/actions';
 import { UploadDropzone } from '../uploadButtons';
 import { useState } from 'react';
-import { UploadFileResponse } from 'uploadthing/client';
+import { UploadFileResponse } from '@/app/lib/definitions';
+
 
 export default function Form() {
-  const [images, setImages] = useState<
-    UploadFileResponse<{ uploadedBy: string }>[]
-  >([]);
+  const [images, setImages] = useState<UploadFileResponse<{ uploadedBy: string }>[]>([])
   const createProductWithImages = createProduct.bind(null, images);
   return (
     <form action={createProductWithImages}>
@@ -69,7 +68,6 @@ export default function Form() {
             <UploadDropzone
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
-                console.log(res)
                 setImages(res);
               }}
               onUploadError={(error: Error) => {
