@@ -1,13 +1,13 @@
 'use server';
 
 import { z } from 'zod';
-import { ProductForm, UploadFileResponse } from './definitions';
 import { QueryResultRow, sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { DeleteImages } from '../../pages/api/uploadthing/route';
+import { ClientUploadedFileData } from 'uploadthing/types';
 
 const CreateProductSchema = z.object({
   id: z.string(),
@@ -20,7 +20,7 @@ const CreateProductSchema = z.object({
 const CreateProductFromSchema = CreateProductSchema.omit({ id: true });
 
 export async function createProduct(
-  images: UploadFileResponse<{ uploadedBy: string }>[],
+  images: ClientUploadedFileData<{ uploadedBy: string }>[],
   formData: FormData,
 ) {
   const { name, description, amount, status } = CreateProductFromSchema.parse({

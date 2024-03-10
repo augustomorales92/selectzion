@@ -11,11 +11,11 @@ import { Button } from '@/app/ui/button';
 import { createProduct } from '@/app/lib/actions';
 import { UploadDropzone } from '../uploadButtons';
 import { useState } from 'react';
-import { UploadFileResponse } from '@/app/lib/definitions';
+import { ClientUploadedFileData } from 'uploadthing/types';
 
 
 export default function Form() {
-  const [images, setImages] = useState<UploadFileResponse<{ uploadedBy: string }>[]>([])
+  const [images, setImages] = useState<ClientUploadedFileData<{ uploadedBy: string }>[]>([])
   const createProductWithImages = createProduct.bind(null, images);
   return (
     <form action={createProductWithImages}>
