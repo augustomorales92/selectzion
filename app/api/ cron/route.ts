@@ -2,7 +2,7 @@ import { sql } from '@vercel/postgres';
 import { fetchProducts } from '@/app/lib/data';
 import { checkIfProductSoldOver30Days } from '@/app/lib/utils';
 
-export async function DeleteProducts() {
+export async function DELETE() {
   try {
     const products = await fetchProducts();
     products.forEach(async (product) => {
