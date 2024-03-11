@@ -133,7 +133,13 @@ export async function updateProduct(
 export async function deletePhoto(images: string[]) {
   try {
     images.forEach(async (id) => {
-      await DELETE(id);
+      await fetch('api/uploadthing', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(images),
+      });
       await sql`DELETE FROM photos WHERE photo_key = ${id}`;
     });
     return { message: 'Deleted Image' };
