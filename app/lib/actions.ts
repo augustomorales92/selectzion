@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
-import { DeleteImages } from '../api/uploadthing/route';
+import { DELETE } from '../api/uploadthing/route';
 import { ClientUploadedFileData } from 'uploadthing/types';
 
 const CreateProductSchema = z.object({
@@ -60,7 +60,7 @@ export async function deleteProduct(id: string) {
     FROM photos
     WHERE product_id = ${id};`;
     const { photo_keys } = photoData?.rows?.[0];
-    if (photo_keys && photo_keys.length) await DeleteImages(photo_keys);
+    if (photo_keys && photo_keys.length) await DELETE(photo_keys);
     await sql`DELETE FROM products WHERE id = ${id}`;
     revalidatePath('/backoffice');
     revalidatePath('/');
@@ -133,7 +133,7 @@ export async function updateProduct(
 export async function deletePhoto(images: string[]) {
   try {
     images.forEach(async (id) => {
-      await DeleteImages(id);
+      await DELETE(id);
       await sql`DELETE FROM photos WHERE photo_key = ${id}`;
     });
     return { message: 'Deleted Image' };

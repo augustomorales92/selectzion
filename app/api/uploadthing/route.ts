@@ -7,7 +7,7 @@ export const { GET, POST } = createRouteHandler({
   router: ourFileRouter,
 });
 
-export async function DeleteImages(urls: string | string[]) {
+export async function DELETE(urls: string | string[]) {
   const utapi = new UTApi();
   await utapi.deleteFiles(urls);
 }
