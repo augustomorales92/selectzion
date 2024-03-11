@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
-import { DeleteImages } from '../../pages/api/uploadthing/route';
+import { DeleteImages } from '../api/uploadthing/route';
 import { ClientUploadedFileData } from 'uploadthing/types';
 
 const CreateProductSchema = z.object({

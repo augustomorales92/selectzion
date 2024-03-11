@@ -1,7 +1,5 @@
-import {
-  generateUploadDropzone,
-} from '@uploadthing/react';
+import { generateUploadDropzone } from '@uploadthing/react';
 
-import type { OurFileRouter } from '@/pages/api/uploadthing/core';
+import type { OurFileRouter } from '@/app/api/uploadthing/core';
 
 export const UploadDropzone = generateUploadDropzone<OurFileRouter>();

@@ -91,7 +91,8 @@ export default function EditInvoiceForm({
                   setNewImages(res);
                 }}
                 onUploadError={(error: Error) => {
-                  alert(`ERROR! ${error.message}`);
+                  console.error(`ERROR! ${error.message}`)
+                  alert(`Ups algo salio mal! Por favor intente nuevamente`);
                 }}
               />
             </Suspense>
