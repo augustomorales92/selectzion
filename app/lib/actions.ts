@@ -6,8 +6,8 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
-import { uploadThingApi } from '../api/uploadthing/route';
 import { ClientUploadedFileData } from 'uploadthing/types';
+import { uploadThingApi } from '../server/uploadthing';
 
 const CreateProductSchema = z.object({
   id: z.string(),
