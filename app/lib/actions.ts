@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
-import { DELETE } from '../api/uploadthing/route';
+import { uploadThingApi } from '../api/uploadthing/route';
 import { ClientUploadedFileData } from 'uploadthing/types';
 
 const CreateProductSchema = z.object({
@@ -60,7 +60,7 @@ export async function deleteProduct(id: string) {
     FROM photos
     WHERE product_id = ${id};`;
     const { photo_keys } = photoData?.rows?.[0];
-    if (photo_keys && photo_keys.length) await DELETE(photo_keys);
+    if (photo_keys && photo_keys.length) await uploadThingApi.deleteFiles(photo_keys);
     await sql`DELETE FROM products WHERE id = ${id}`;
     revalidatePath('/backoffice');
     revalidatePath('/');
@@ -133,13 +133,7 @@ export async function updateProduct(
 export async function deletePhoto(images: string[]) {
   try {
     images.forEach(async (id) => {
-      await fetch('api/uploadthing', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(images),
-      });
+      await uploadThingApi.deleteFiles(id)
       await sql`DELETE FROM photos WHERE photo_key = ${id}`;
     });
     return { message: 'Deleted Image' };
