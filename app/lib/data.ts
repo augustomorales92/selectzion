@@ -80,10 +80,7 @@ export async function fetchProductById(id: string) {
     const photoData = await sql`SELECT *
     FROM photos
     WHERE product_id = ${id};`;
-    const product = data?.rows?.map((product) => ({
-      ...product,
-      amount: product.amount / 100,
-    }));
+    const product = data?.rows
     return { ...product[0], photo_urls: photoData.rows };
   } catch (error) {
     console.error('Database Error:', error);

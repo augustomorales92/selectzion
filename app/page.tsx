@@ -19,7 +19,7 @@ export default async function Page({
   const currentPage = Number(searchParams?.page) || 1;
   const totalPages = await fetchProductsPages(query);
   return (
-    <main className="flex min-h-screen flex-col p-6">
+    <main className="flex min-h-screen flex-col p-3">
       <Suspense fallback={<HomeSkeleton />}>
         <header className="flex shrink-0 items-end justify-center rounded-lg bg-gray-50 p-4 md:h-full">
           <Image
@@ -34,7 +34,7 @@ export default async function Page({
           <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
             <Search placeholder="Search products..." />
           </div>
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+          <div className="w-fit mx-auto grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-3 justify-items-center justify-between gap-y-14 gap-x-20 mt-10 mb-5 scale-75 sm:transform-none">
             <Suspense key={query + currentPage} fallback={<CardsSkeleton />}>
               <CardWrapper />
             </Suspense>

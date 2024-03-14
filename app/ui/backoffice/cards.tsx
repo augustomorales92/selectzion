@@ -1,6 +1,5 @@
 import { fetchProducts } from '@/app/lib/data';
-import { Card } from './card';
-
+import { Card } from './newCard';
 export default async function CardWrapper() {
   const products = await fetchProducts();
   return (
