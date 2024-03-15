@@ -11,8 +11,7 @@ export function Card({
   amount,
 }: ProductProps) {
   return (
-    <div className="w-72 scale-75 rounded-xl border-gray-200 bg-white shadow-md hover:shadow-xl dark:border-gray-700 dark:bg-gray-800 sm:transform-none ">
-      <div className="group/item">
+    <div className="w-80 scale-75 rounded-xl border-gray-200 bg-white shadow-md hover:shadow-xl dark:border-gray-700 dark:bg-gray-800 sm:transform-none ">
         <div className="rounded-t-lg p-2">
           <Slider images={photo_urls} isSold={status === 'sold'} />
         </div>
@@ -22,8 +21,8 @@ export function Card({
               {name}
             </h5>
           </div>
-            <div className="h-24 overflow-auto p-1">
-              <ul className="font-small mb-1 text-xs text-gray-700 dark:text-gray-400 md:font-normal">
+            <div className="h-24 overflow-auto p-1 no-scrollbar">
+              <ul className="font-small mb-1 text-xs text-gray-700 dark:text-gray-400 md:font-normal ">
                 {description?.split('-')?.map((e, i) => (
                   <li key={i} className="truncate">
                     {e}
@@ -33,7 +32,7 @@ export function Card({
             </div>
           <div className="flex items-center justify-between">
             <span className="text-l font-bold text-gray-900 dark:text-white md:text-2xl">
-              {`$ ${amount}`}
+              {amount.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' })}
             </span>
             <button
               onClick={sendWhatsApp}
@@ -52,7 +51,6 @@ export function Card({
             </button>
           </div>
         </div>
-      </div>
     </div>
   );
 }
